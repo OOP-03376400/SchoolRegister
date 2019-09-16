@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SchoolRegister.Core.Repositories;
+using SchoolRegister.Infrastructure.Mappers;
 using SchoolRegister.Infrastructure.Repositories;
 using SchoolRegister.Infrastructure.Services;
 
@@ -31,6 +32,7 @@ namespace SchoolRegister.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddScoped<IUserRepository, InMemoryUserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddSingleton(AutoMapperConfig.Initialize());
 
         }
 

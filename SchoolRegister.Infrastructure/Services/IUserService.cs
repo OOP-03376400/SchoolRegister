@@ -1,10 +1,11 @@
+using System.Threading.Tasks;
 using SchoolRegister.Infrastructure.DTO;
 
 namespace SchoolRegister.Infrastructure.Services
 {
     public interface IUserService
     {
-        UserDto Get(string email);
-        void Register(string email, string username,string role, string password);
+        Task<UserDto> GetAsync(string email);
+        Task RegisterAsync(string email, string username,string role, string password);
     }
 }

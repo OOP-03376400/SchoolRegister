@@ -2,6 +2,7 @@ using System;
 using SchoolRegister.Core.Repositories;
 using SchoolRegister.Infrastructure.DTO;
 using SchoolRegister.Core.Domain;
+using System.Threading.Tasks;
 
 namespace SchoolRegister.Infrastructure.Services
 {
@@ -14,9 +15,9 @@ namespace SchoolRegister.Infrastructure.Services
             _userRepository = userRepository;
         }
 
-        public UserDto Get(string email)
+        public async Task<UserDto> GetAsync(string email)
         {
-            var user = _userRepository.Get(email);
+            var user = await _userRepository.GetAsync(email);
 
             return new UserDto
             {
@@ -27,9 +28,9 @@ namespace SchoolRegister.Infrastructure.Services
             };
         }
 
-        public void Register(string email, string username,string role, string password)
+        public async Task RegisterAsync(string email, string username,string role, string password)
         {
-            var user = _userRepository.Get(email);
+            var user = await _userRepository.GetAsync(email);
             if(user != null)
             {
                 throw new Exception($"User with email: '{email}' already exists.");
@@ -37,7 +38,7 @@ namespace SchoolRegister.Infrastructure.Services
 
             var salt = Guid.NewGuid().ToString("N");
             user = new User(Guid.NewGuid(),email,username,"student", password, salt);
-            _userRepository.Add(user);
+            await _userRepository.AddAsync(user);
         }
     }
 }
