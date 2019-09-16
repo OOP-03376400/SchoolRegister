@@ -14,6 +14,20 @@ namespace SchoolRegister.Core.Domain
         public string Role { get; protected set; }
         public DateTime CreatedAt { get; protected set; }
         public DateTime UpdatedAt { get; protected set; }
+        protected User()
+        {
+        }
+
+        public User(Guid userId, string email, string username, string role, 
+            string password, string salt)
+        {
+            Id = userId;
+            SetEmail(email);
+            SetUsername(username);
+            SetRole(role);
+            SetPassword(password, salt);
+            CreatedAt = DateTime.UtcNow;
+        }
 
 
         public void SetUsername(string username) 
