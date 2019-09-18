@@ -4,6 +4,6 @@ namespace SchoolRegister.Infrastructure.Queries
 {
     public class GetUser: IQuery<UserDto>
     {
-        public string email { get; set; }
+        public string Email { get; set; }
     }
 }

@@ -1,20 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
-using SchoolRegister.Infrastructure.Commands;
-using SchoolRegister.Infrastructure.Queries;
+using SchoolRegister.Infrastructure.Dispatchers;
 
 namespace SchoolRegister.Api.Controllers
 {
     [Route("[controller]")]
     public abstract class ApiControllerBase : Controller
     {
-        protected readonly ICommandDispatcher CommandDispatcher;
-        protected readonly IQueryDispatcher QueryDispatcher;
+        protected readonly IDispatcher _Dispatcher;
 
-        protected ApiControllerBase(ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher)
+        protected ApiControllerBase(IDispatcher Dispatcher)
         {
-            CommandDispatcher = commandDispatcher;
-            QueryDispatcher = queryDispatcher;
-
+            _Dispatcher = Dispatcher;
         }        
     }
 }

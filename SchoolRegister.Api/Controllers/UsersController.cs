@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SchoolRegister.Infrastructure.Commands;
+using SchoolRegister.Infrastructure.Dispatchers;
 using SchoolRegister.Infrastructure.DTO;
 using SchoolRegister.Infrastructure.Queries;
-using SchoolRegister.Infrastructure.Services;
 
 namespace SchoolRegister.Api.Controllers
 {
@@ -12,17 +12,19 @@ namespace SchoolRegister.Api.Controllers
     [ApiController]
     public class UsersController : ApiControllerBase
     {
-        private IUserService _userService;
-        public UsersController(IUserService userservice,ICommandDispatcher commandDispatcher,IQueryDispatcher queryDispatcher) :base(commandDispatcher,queryDispatcher)
+        public UsersController(IDispatcher Dispatcher) :base(Dispatcher)
         {
         }
         public async Task<UserDto> Get([FromRoute] GetUser query)
-            => await QueryDispatcher.QueryAsync<UserDto>(query);
+        {
+            return await _Dispatcher.QueryAsync<UserDto>(query);
+        }
+            
 
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateUser command)
         {
-            await CommandDispatcher.DispatchAsync(command);
+            await _Dispatcher.SendAsync(command);
             return Created($"users/{command.Email}", new object());
         }
 

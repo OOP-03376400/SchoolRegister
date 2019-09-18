@@ -1,13 +1,13 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SchoolRegister.Infrastructure.Commands;
-using SchoolRegister.Infrastructure.Queries;
+using SchoolRegister.Infrastructure.Dispatchers;
 
 namespace SchoolRegister.Api.Controllers
 {
     public class AccountController : ApiControllerBase
     {
-        public AccountController(ICommandDispatcher commandDispatcher,IQueryDispatcher queryDispatcher) : base(commandDispatcher,queryDispatcher)
+        public AccountController(Dispatcher Dispatcher) : base(Dispatcher)
         {
         }
 
@@ -15,7 +15,7 @@ namespace SchoolRegister.Api.Controllers
         [Route("password")]
         public async Task<IActionResult> Put([FromBody]ChangeUserPassword command)
         {
-            await CommandDispatcher.DispatchAsync(command);
+            await _Dispatcher.SendAsync(command);
 
             return NoContent();
         }  

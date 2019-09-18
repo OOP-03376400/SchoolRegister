@@ -11,7 +11,7 @@ namespace SchoolRegister.Infrastructure.Commands
         {
             _context = context;
         }
-        public async Task DispatchAsync<T>(T command) where T : ICommand
+        public async Task SendAsync<T>(T command) where T : ICommand
         {
             if(command == null)
             {
