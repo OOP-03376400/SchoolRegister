@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace SchoolRegister.Infrastructure.Commands
+namespace SchoolRegister.Infrastructure.Dispatchers.Commands
 {
     public interface ICommandDispatcher
     {

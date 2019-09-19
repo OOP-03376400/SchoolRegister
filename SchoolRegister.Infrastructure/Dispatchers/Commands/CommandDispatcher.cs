@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Autofac;
 
-namespace SchoolRegister.Infrastructure.Commands
+namespace SchoolRegister.Infrastructure.Dispatchers.Commands
 {
     public class CommandDispatcher : ICommandDispatcher
     {

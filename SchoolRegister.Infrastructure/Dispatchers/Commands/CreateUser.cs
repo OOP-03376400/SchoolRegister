@@ -1,4 +1,4 @@
-namespace SchoolRegister.Infrastructure.Commands
+namespace SchoolRegister.Infrastructure.Dispatchers.Commands
 {
     public class CreateUser : ICommand
     {

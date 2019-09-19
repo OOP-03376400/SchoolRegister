@@ -1,6 +1,6 @@
-namespace SchoolRegister.Infrastructure.Commands
+namespace SchoolRegister.Infrastructure.Dispatchers.Commands
 {
-    public class ChangeUserPassword : ICommand
+    public class ChangeUserPassword : AuthenticatedCommandBase
     {
         public string CurrentPassword { get; set; }
         public string NewPassword { get; set; }

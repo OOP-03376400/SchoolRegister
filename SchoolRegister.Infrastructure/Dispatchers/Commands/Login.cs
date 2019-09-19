@@ -1,4 +1,3 @@
-using SchoolRegister.Infrastructure.Commands;
 
 namespace SchoolRegister.Infrastructure.Dispatchers.Commands
 {

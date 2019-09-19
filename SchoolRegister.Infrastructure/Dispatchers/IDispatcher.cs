@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using SchoolRegister.Infrastructure.Commands;
+using SchoolRegister.Infrastructure.Dispatchers.Commands;
 using SchoolRegister.Infrastructure.Queries;
 
 namespace SchoolRegister.Infrastructure.Dispatchers

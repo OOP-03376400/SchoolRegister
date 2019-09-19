@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Caching.Memory;
-using SchoolRegister.Infrastructure.Commands;
 using SchoolRegister.Infrastructure.Dispatchers.Commands;
 using SchoolRegister.Infrastructure.Extensions;
 using SchoolRegister.Infrastructure.Services;
@@ -26,7 +25,7 @@ namespace SchoolRegister.Infrastructure.Handlers.Users
         {
             await _userService.LoginAsync(command.Email, command.Password);
             var user = await _userService.GetAsync(command.Email);
-            var jwt = _jwtHandler.CreateToken(command.Email, user.Role);
+            var jwt = _jwtHandler.CreateToken(user.Id, user.Role);
             _cache.SetJwt(command.Email, jwt);
         }        
     }

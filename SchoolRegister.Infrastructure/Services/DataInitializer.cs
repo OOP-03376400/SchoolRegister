@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace SchoolRegister.Infrastructure.Services
 {
-    public class DataInitializer
+    public class DataInitializer : IDataInitializer
     {
         private readonly IUserService _userService;
         private readonly ILogger<DataInitializer> _logger;

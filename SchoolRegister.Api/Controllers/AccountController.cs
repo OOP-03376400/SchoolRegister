@@ -1,15 +1,16 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SchoolRegister.Infrastructure.Commands;
+using SchoolRegister.Infrastructure.Dispatchers.Commands;
 using SchoolRegister.Infrastructure.Dispatchers;
 
 namespace SchoolRegister.Api.Controllers
 {
     public class AccountController : ApiControllerBase
     {
+
         public AccountController(Dispatcher Dispatcher) : base(Dispatcher)
         {
-            
+
         }
 
         [HttpPut]
@@ -20,5 +21,6 @@ namespace SchoolRegister.Api.Controllers
 
             return NoContent();
         }  
+
     }
 }

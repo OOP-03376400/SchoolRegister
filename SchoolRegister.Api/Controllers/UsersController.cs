@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using SchoolRegister.Infrastructure.Commands;
 using SchoolRegister.Infrastructure.Dispatchers;
+using SchoolRegister.Infrastructure.Dispatchers.Commands;
 using SchoolRegister.Infrastructure.DTO;
 using SchoolRegister.Infrastructure.Queries;
 using SchoolRegister.Infrastructure.Services;
@@ -32,8 +32,8 @@ namespace SchoolRegister.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]CreateUser command)
         {
-            await _Dispatcher.SendAsync(command);
-            return Created($"users/{command.Email}", new object());
+            await DispatchAsync(command);
+            return Created($"Users/{command.Email}", null); //operacja get Users/email
         }
         
 

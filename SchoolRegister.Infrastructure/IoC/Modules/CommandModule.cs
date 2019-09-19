@@ -1,6 +1,6 @@
 using System.Reflection;
 using Autofac;
-using SchoolRegister.Infrastructure.Commands;
+using SchoolRegister.Infrastructure.Dispatchers.Commands;
 
 namespace SchoolRegister.Infrastructure.IoC.Modules
 {
