@@ -23,3 +23,4 @@ namespace SchoolRegister.Infrastructure.Queries
         }
     }
 }
+
