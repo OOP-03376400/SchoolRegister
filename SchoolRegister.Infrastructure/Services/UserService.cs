@@ -4,6 +4,7 @@ using SchoolRegister.Infrastructure.DTO;
 using SchoolRegister.Core.Domain;
 using System.Threading.Tasks;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace SchoolRegister.Infrastructure.Services
 {
@@ -18,6 +19,12 @@ namespace SchoolRegister.Infrastructure.Services
             _encrypter = encrypter;
             _mapper = mapper;
             _userRepository = userRepository;
+        }
+        public async Task<IEnumerable<UserDto>> BrowseAsync()
+        {
+            var drivers = await _userRepository.GetAllAsync();
+
+            return _mapper.Map<IEnumerable<User>,IEnumerable<UserDto>>(drivers);
         }
 
         public async Task<UserDto> GetAsync(string email)

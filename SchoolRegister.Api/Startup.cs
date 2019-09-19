@@ -38,7 +38,7 @@ namespace SchoolRegister.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMemoryCache();
-            
+
             var jwtSection = Configuration.GetSection("jwt");
             var jwtSettings = new JwtSettings();
             jwtSection.Bind(jwtSettings);
@@ -80,6 +80,12 @@ namespace SchoolRegister.Api
             {
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+            }
+            var generalSettings = app.ApplicationServices.GetService<GeneralSettings>();
+            if(generalSettings.SeedData)
+            {
+                var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
+                dataInitializer.SeedAsync();
             }
 
             app.UseHttpsRedirection();
