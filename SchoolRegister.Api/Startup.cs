@@ -37,7 +37,8 @@ namespace SchoolRegister.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            services.AddMemoryCache();
+            
             var jwtSection = Configuration.GetSection("jwt");
             var jwtSettings = new JwtSettings();
             jwtSection.Bind(jwtSettings);

@@ -9,6 +9,7 @@ namespace SchoolRegister.Api.Controllers
     {
         public AccountController(Dispatcher Dispatcher) : base(Dispatcher)
         {
+            
         }
 
         [HttpPut]
