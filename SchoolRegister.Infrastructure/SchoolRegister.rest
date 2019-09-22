@@ -1,0 +1,32 @@
+@apiUrl = http://localhost:5000
+@accessToken = xxxxxxxxxxxxxxxxxx
+
+
+### Sign in as admin
+POST {{apiUrl}}/account/login
+content-type: application/json
+
+{
+	"email": "user1@email.com",
+	"password": "secret"
+}
+
+### Register user
+POST {{apiUrl}}/users
+content-type: application/json
+
+{
+	"Email": "user1@email.com",
+	"Password": "secret",
+    "Username": "user1",
+    "Role":"user"
+}
+
+### Browse All Users
+Get {{apiUrl}}/users
+
+
+@email = user1@email.com
+### Get User
+Get {{apiUrl}}/users/{{email}}
+

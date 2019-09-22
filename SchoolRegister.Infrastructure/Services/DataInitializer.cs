@@ -20,22 +20,22 @@ namespace SchoolRegister.Infrastructure.Services
         {
             _logger.LogTrace("Initializing data...");    
             var tasks = new List<Task>();
-            for(var i=1; i<=10; i++)
+            for(var i=1; i<=5; i++)
             {
                 var userId = Guid.NewGuid();
                 var username = $"user{i}";
-                tasks.Add(_userService.RegisterAsync($"user{i}@test.com", 
+                tasks.Add(_userService.RegisterAsync($"user{i}@email.com", 
                     username, "secret", "user"));
                 _logger.LogTrace($"Adding user: '{username}'.");
 
 
             }
-            for(var i=1; i<=3; i++)
+            for(var i=1; i<=2; i++)
             {
                 var userId = Guid.NewGuid();
                 var username = $"admin{i}";
                  _logger.LogTrace($"Adding admin: '{username}'.");
-                tasks.Add(_userService.RegisterAsync( $"admin{i}@test.com", 
+                tasks.Add(_userService.RegisterAsync( $"admin{i}@email.com", 
                     username, "secret", "admin"));
             }
             await Task.WhenAll(tasks);

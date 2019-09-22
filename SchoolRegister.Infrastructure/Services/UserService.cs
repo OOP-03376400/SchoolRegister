@@ -61,7 +61,9 @@ namespace SchoolRegister.Infrastructure.Services
 
         public async Task RegisterAsync(string email, string username,string role, string password)
         {
+
             var user = await _userRepository.GetAsync(email);
+
             if(user != null)
             {
                 throw new ServiceException(SchoolRegister.Infrastructure.Exceptions.ErrorCodes.EmailInUse,
@@ -70,7 +72,7 @@ namespace SchoolRegister.Infrastructure.Services
 
             var salt = _encrypter.GetSalt(password);
             var hash = _encrypter.GetHash(password,salt);
-            user = new User(Guid.NewGuid(),email,username,"student", hash, salt);
+            user = new User(Guid.NewGuid(),email,username,role, hash, salt);
             await _userRepository.AddAsync(user);
         }
     }

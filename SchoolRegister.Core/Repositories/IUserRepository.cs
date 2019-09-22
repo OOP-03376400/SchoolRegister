@@ -7,7 +7,7 @@ namespace SchoolRegister.Core.Repositories
 {
     public interface IUserRepository : IRepository
     {
-        Task<User> GetAsync(Guid id); 
+        Task<User> GetAsync(Guid id);  
         Task<User> GetAsync(string email);
         Task<IEnumerable<User>> GetAllAsync();
         Task AddAsync(User user);

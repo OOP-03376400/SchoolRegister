@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using SchoolRegister.Api.Framework;
 using SchoolRegister.Core.Repositories;
 using SchoolRegister.Infrastructure.IoC.Modules;
 using SchoolRegister.Infrastructure.Mappers;
@@ -86,8 +87,9 @@ namespace SchoolRegister.Api
             {
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();
+                
             }
-            app.UseExceptionHandler();
+            app.UseMyExceptionHandler();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

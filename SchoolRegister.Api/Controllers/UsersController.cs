@@ -18,10 +18,12 @@ namespace SchoolRegister.Api.Controllers
         {
             _userService = userService;
         }
+        [HttpGet("{email}")]
         public async Task<UserDto> Get([FromRoute] GetUser query)
         {
             return await _Dispatcher.QueryAsync<UserDto>(query);
-        }
+        } 
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var users = await _userService.BrowseAsync();

@@ -13,9 +13,7 @@ namespace SchoolRegister.Infrastructure.Services
         private Func<Task> _alwaysAsync;
         private Func<Task> _onSuccessAsync;
         private Func<Exception, Task> _onErrorAsync;
-        private Func<Exception, Task> _onErrorWithLoggerAsync;
         private Func<SchoolRegisterException, Task> _onCustomErrorAsync;
-        private Func<SchoolRegisterException, Task> _onCustomErrorWithLoggerAsync;
         private bool _propagateException = true;
         private bool _executeOnError = true;
 
@@ -117,10 +115,6 @@ namespace SchoolRegister.Infrastructure.Services
 			var customException = exception as SchoolRegisterException;
 			if (customException != null)
 			{
-				if (_onCustomErrorWithLoggerAsync != null)
-				{
-					await _onCustomErrorWithLoggerAsync(customException);
-				}
 				if (_onCustomErrorAsync != null)
 				{
 					await _onCustomErrorAsync(customException);
@@ -130,10 +124,6 @@ namespace SchoolRegister.Infrastructure.Services
 			var executeOnError = _executeOnError || customException == null;
 			if (executeOnError)
 			{
-				if (_onErrorWithLoggerAsync != null)
-				{
-					await _onErrorWithLoggerAsync(exception);
-				}
 				if (_onErrorAsync != null)
 				{
 					await _onErrorAsync(exception);

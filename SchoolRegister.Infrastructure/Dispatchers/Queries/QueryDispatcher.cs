@@ -3,7 +3,7 @@ using Autofac;
 
 namespace SchoolRegister.Infrastructure.Queries
 {
-    public class QueryDispatcher
+    public class QueryDispatcher : IQueryDispatcher
     {
         private readonly IComponentContext _context;
 
