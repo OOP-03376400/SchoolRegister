@@ -87,7 +87,7 @@ namespace SchoolRegister.Api
                 var dataInitializer = app.ApplicationServices.GetService<IDataInitializer>();
                 dataInitializer.SeedAsync();
             }
-
+            app.UseExceptionHandler();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

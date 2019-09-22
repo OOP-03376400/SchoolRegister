@@ -5,6 +5,7 @@ using SchoolRegister.Core.Domain;
 using System.Threading.Tasks;
 using AutoMapper;
 using System.Collections.Generic;
+using SchoolRegister.Infrastructure.Exceptions;
 
 namespace SchoolRegister.Infrastructure.Services
 {
@@ -22,9 +23,9 @@ namespace SchoolRegister.Infrastructure.Services
         }
         public async Task<IEnumerable<UserDto>> BrowseAsync()
         {
-            var drivers = await _userRepository.GetAllAsync();
+            var users = await _userRepository.GetAllAsync();
 
-            return _mapper.Map<IEnumerable<User>,IEnumerable<UserDto>>(drivers);
+            return _mapper.Map<IEnumerable<User>,IEnumerable<UserDto>>(users);
         }
 
         public async Task<UserDto> GetAsync(string email)
@@ -45,7 +46,8 @@ namespace SchoolRegister.Infrastructure.Services
             var user = await _userRepository.GetAsync(email);
             if(user == null)
             {
-                throw new Exception("Invalid credentials");
+                throw new ServiceException(SchoolRegister.Infrastructure.Exceptions.ErrorCodes.InvalidEmail,
+                "Invalid credentials");
             }
 
             var hash = _encrypter.GetHash(password, user.Salt);
@@ -53,7 +55,8 @@ namespace SchoolRegister.Infrastructure.Services
             {
                 return;
             }
-            throw new Exception("Invalid credentials");
+            throw new ServiceException(SchoolRegister.Infrastructure.Exceptions.ErrorCodes.InvalidCredentials,
+            "Invalid credentials");
         }
 
         public async Task RegisterAsync(string email, string username,string role, string password)
@@ -61,7 +64,8 @@ namespace SchoolRegister.Infrastructure.Services
             var user = await _userRepository.GetAsync(email);
             if(user != null)
             {
-                throw new Exception($"User with email: '{email}' already exists.");
+                throw new ServiceException(SchoolRegister.Infrastructure.Exceptions.ErrorCodes.EmailInUse,
+                ($"User with email: '{email}' already exists."));
             }
 
             var salt = _encrypter.GetSalt(password);
