@@ -17,6 +17,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SchoolRegister.Api.Framework;
 using SchoolRegister.Core.Repositories;
+using SchoolRegister.Infrastructure.EF;
 using SchoolRegister.Infrastructure.IoC.Modules;
 using SchoolRegister.Infrastructure.Mappers;
 using SchoolRegister.Infrastructure.Repositories;
@@ -39,7 +40,10 @@ namespace SchoolRegister.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMemoryCache();
-
+            services.AddEntityFrameworkSqlServer()
+                    .AddEntityFrameworkInMemoryDatabase()
+                    .AddDbContext<SchoolRegisterContext>();
+                    
             var jwtSection = Configuration.GetSection("jwt");
             var jwtSettings = new JwtSettings();
             jwtSection.Bind(jwtSettings);

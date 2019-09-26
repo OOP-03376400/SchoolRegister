@@ -19,6 +19,7 @@ namespace SchoolRegister.Infrastructure.IoC.Modules
             builder.RegisterModule<QueryModule>();
             builder.RegisterModule<DispatcherModule>();
             builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<SqlModule>();
             builder.RegisterModule<ServiceModule>();
             builder.RegisterModule(new SettingsModule(_configuration));
 

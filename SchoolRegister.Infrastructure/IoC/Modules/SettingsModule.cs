@@ -1,5 +1,6 @@
 using Autofac;
 using Microsoft.Extensions.Configuration;
+using SchoolRegister.Infrastructure.EF;
 using SchoolRegister.Infrastructure.Extensions;
 using SchoolRegister.Infrastructure.Settings;
 
@@ -18,7 +19,10 @@ namespace SchoolRegister.Infrastructure.IoC.Modules
             builder.RegisterInstance(_configuration.GetSettings<GeneralSettings>())
                    .SingleInstance();
             builder.RegisterInstance(_configuration.GetSettings<JwtSettings>())
+                   .SingleInstance(); 
+            builder.RegisterInstance(_configuration.GetSettings<SqlSettings>())
                    .SingleInstance();     
+
 
         } 
     }
