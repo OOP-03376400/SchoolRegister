@@ -8,5 +8,6 @@ namespace SchoolRegister.Core.Domain
         public string FirstName { get; protected set; }
         public string SureName { get; protected set; }
         
+        
     }
 }

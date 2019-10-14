@@ -35,6 +35,13 @@ namespace SchoolRegister.Api.Controllers
 
             return NoContent();
         }  
+        
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody]CreateUser command)
+        {
+            await DispatchAsync(command);
+            return Created($"Users/{command.Email}", null); //operacja get Users/email
+        }
 
     }
 }
